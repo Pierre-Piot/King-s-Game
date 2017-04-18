@@ -39,6 +39,7 @@ function Player(name, gender, avatar){
   this.avatar = avatar;
 }
 
+
 // Get info (N# of players, name, gender) from player
 Game.prototype.retrieveData = function (){
   var numberInput = $('#player-number').find(':selected').text();
@@ -70,60 +71,60 @@ function randomize(thing){
 }
 
 // define stacks of cards
-var cardStack = [];
-for (var i = 0; i < 53; i++){
-	cardStack.push(i);
-}
 
 var stack = [
-				{name: "king1", 	img:"images/cards/king_of_spades2.png", 	rule:13},
-				{name: "king2", 	img:"images/cards/king_of_hearts2.png", 	rule:13},
-				{name: "king3", 	img:"images/cards/king_of_diamonds2.png" 	rule:13},
-				{name: "king4", 	img:"images/cards/king_of_clubs2.png"			rule:13},
-				{name: "queen1", 	img:"images/cards/queen_of_spades2.png"		rule:12},
-				{name: "queen2", 	img:"images/cards/queen_of_hearts2.png"		rule:12},
-				{name: "queen3", 	img:"images/cards/queen_of_diamonds2.png"	rule:12},
-				{name: "queen4", 	img:"images/cards/queen_of_clubs2.png"		rule:12},
-				{name: "jack1", 	img:"images/cards/jack_of_spades2.png"		rule:11},
-				{name: "jack2", 	img:"images/cards/jack_of_hearts2.png"		rule:11},
-				{name: "jack3", 	img:"images/cards/jack_of_diamonds2.png"	rule:11},
-				{name: "jack4", 	img:"images/cards/jack_of_clubs2.png"			rule:11},
-				{name: "ten1", 		img:"images/cards/10_of_spades.png"				rule:10},
-				{name: "ten2", 		img:"images/cards/10_of_hearts.png"				rule:10},
-				{name: "ten3", 		img:"images/cards/10_of_diamonds.png"			rule:10},
-				{name: "ten4", 		img:"images/cards/10_of_clubs.png"				rule:10},
-				{name: "nine1", 	img:"images/cards/9_of_spades.png"				rule:9},
-				{name: "nine2", 	img:"images/cards/9_of_hearts.png"				rule:9},
-				{name: "nine3", 	img:"images/cards/9_of_diamonds.png"			rule:9},
-				{name: "nine4", 	img:"images/cards/9_of_clubs.png"					rule:9},
-				{name: "eight1", 	img:"images/cards/8_of_spades.png"				rule:8},
-				{name: "eight2", 	img:"images/cards/8_of_hearts.png"				rule:8},
-				{name: "eight3", 	img:"images/cards/8_of_diamonds.png"			rule:8},
-				{name: "eight4", 	img:"images/cards/8_of_clubs.png"					rule:8},
-				{name: "seven1", 	img:"images/cards/7_of_spades.png"				rule:7},
-				{name: "seven2", 	img:"images/cards/7_of_hearts.png"				rule:7},
-				{name: "seven3", 	img:"images/cards/7_of_diamonds.png"			rule:7},
-				{name: "seven4", 	img:"images/cards/7_of_clubs.png"					rule:7},
-				{name: "six1", 		img:"images/cards/6_of_spades.png"				rule:6},
-				{name: "six2", 		img:"images/cards/6_of_hearts.png"				rule:6},
-				{name: "six3", 		img:"images/cards/6_of_diamonds.png"			rule:6},
-				{name: "six4", 		img:"images/cards/6_of_clubs.png"					rule:6},
-				{name: "five1", 	img:"images/cards/5_of_spades.png"				rule:5},
-				{name: "five2", 	img:"images/cards/5_of_hearts.png"				rule:5},
-				{name: "five3", 	img:"images/cards/5_of_diamonds.png"			rule:5},
-				{name: "five4", 	img:"images/cards/5_of_clubs.png"					rule:5},
-				{name: "four1", 	img:"images/cards/4_of_spades.png"				rule:4},
-				{name: "four2", 	img:"images/cards/4_of_hearts.png"				rule:4},
-				{name: "four3", 	img:"images/cards/4_of_diamonds.png"			rule:4},
-				{name: "four4", 	img:"images/cards/4_of_clubs.png"					rule:4},
-				{name: "three1", 	img:"images/cards/3_of_spades.png"				rule:3},
-				{name: "three2", 	img:"images/cards/3_of_hearts.png"				rule:3},
-				{name: "three3", 	img:"images/cards/3_of_diamonds.png"			rule:3},
-				{name: "three4", 	img:"images/cards/3_of_clubs.png"					rule:3},
-				{name: "two1", 		img:"images/cards/2_of_spades.png"				rule:2},
-				{name: "two2", 		img:"images/cards/2_of_hearts.png"				rule:2},
-				{name: "two3", 		img:"images/cards/2_of_diamonds.png"			rule:2},
-				{name: "two4", 		img:"images/cards/2_of_clubs.png.png"			rule:2},
+				{name: "ace1", 		img:"images/cards/black_joker.png", 			rule:13},
+				{name: "ace2", 		img:"images/cards/black_joker.png", 			rule:13},
+				{name: "ace3", 		img:"images/cards/black_joker.png", 			rule:13},
+				{name: "ace4", 		img:"images/cards/black_joker.png",				rule:13},
+				{name: "king1", 	img:"images/cards/king_of_spades2.png", 	rule:12},
+				{name: "king2", 	img:"images/cards/king_of_hearts2.png", 	rule:12},
+				{name: "king3", 	img:"images/cards/king_of_diamonds2.png", rule:12},
+				{name: "king4", 	img:"images/cards/king_of_clubs2.png",		rule:12},
+				{name: "queen1", 	img:"images/cards/queen_of_spades2.png",	rule:11},
+				{name: "queen2", 	img:"images/cards/queen_of_hearts2.png",	rule:11},
+				{name: "queen3", 	img:"images/cards/queen_of_diamonds2.png",rule:11},
+				{name: "queen4", 	img:"images/cards/queen_of_clubs2.png",		rule:11},
+				{name: "jack1", 	img:"images/cards/jack_of_spades2.png",		rule:10},
+				{name: "jack2", 	img:"images/cards/jack_of_hearts2.png",		rule:10},
+				{name: "jack3", 	img:"images/cards/jack_of_diamonds2.png",	rule:10},
+				{name: "jack4", 	img:"images/cards/jack_of_clubs2.png",		rule:10},
+				{name: "ten1", 		img:"images/cards/10_of_spades.png",			rule:9},
+				{name: "ten2", 		img:"images/cards/10_of_hearts.png",			rule:9},
+				{name: "ten3", 		img:"images/cards/10_of_diamonds.png",		rule:9},
+				{name: "ten4", 		img:"images/cards/10_of_clubs.png",				rule:9},
+				{name: "nine1", 	img:"images/cards/9_of_spades.png",				rule:8},
+				{name: "nine2", 	img:"images/cards/9_of_hearts.png",				rule:8},
+				{name: "nine3", 	img:"images/cards/9_of_diamonds.png",			rule:8},
+				{name: "nine4", 	img:"images/cards/9_of_clubs.png",				rule:8},
+				{name: "eight1", 	img:"images/cards/8_of_spades.png",				rule:7},
+				{name: "eight2", 	img:"images/cards/8_of_hearts.png",				rule:7},
+				{name: "eight3", 	img:"images/cards/8_of_diamonds.png",			rule:7},
+				{name: "eight4", 	img:"images/cards/8_of_clubs.png",				rule:7},
+				{name: "seven1", 	img:"images/cards/7_of_spades.png",				rule:6},
+				{name: "seven2", 	img:"images/cards/7_of_hearts.png",				rule:6},
+				{name: "seven3", 	img:"images/cards/7_of_diamonds.png",			rule:6},
+				{name: "seven4", 	img:"images/cards/7_of_clubs.png",				rule:6},
+				{name: "six1", 		img:"images/cards/6_of_spades.png",				rule:5},
+				{name: "six2", 		img:"images/cards/6_of_hearts.png",				rule:5},
+				{name: "six3", 		img:"images/cards/6_of_diamonds.png",			rule:5},
+				{name: "six4", 		img:"images/cards/6_of_clubs.png",				rule:5},
+				{name: "five1", 	img:"images/cards/5_of_spades.png",				rule:4},
+				{name: "five2", 	img:"images/cards/5_of_hearts.png",				rule:4},
+				{name: "five3", 	img:"images/cards/5_of_diamonds.png",			rule:4},
+				{name: "five4", 	img:"images/cards/5_of_clubs.png",				rule:4},
+				{name: "four1", 	img:"images/cards/4_of_spades.png",				rule:3},
+				{name: "four2", 	img:"images/cards/4_of_hearts.png",				rule:3},
+				{name: "four3", 	img:"images/cards/4_of_diamonds.png",			rule:3},
+				{name: "four4", 	img:"images/cards/4_of_clubs.png",				rule:3},
+				{name: "three1", 	img:"images/cards/3_of_spades.png",				rule:2},
+				{name: "three2", 	img:"images/cards/3_of_hearts.png",				rule:2},
+				{name: "three3", 	img:"images/cards/3_of_diamonds.png",			rule:2},
+				{name: "three4", 	img:"images/cards/3_of_clubs.png",				rule:2},
+				{name: "two1", 		img:"images/cards/2_of_spades.png",				rule:1},
+				{name: "two2", 		img:"images/cards/2_of_hearts.png",				rule:1},
+				{name: "two3", 		img:"images/cards/2_of_diamonds.png",			rule:1},
+				{name: "two4", 		img:"images/cards/2_of_clubs.png",				rule:1},
 ];
 
 
@@ -132,70 +133,75 @@ function drawRandomCard () {
   return stack[randomize(stack)];
 }
 
-var randomCard = drawRandomCard();
+// var randomCard = drawRandomCard();
 
-	$('#stack' ).click(function() {
-	$('#newstack').attr('src', drawRandomCard().img);
-	  console.log(drawRandomCard().img);
-})
 
 
 // interpret number of card
-function compareValue (cardClass){
-switch(cardClass) {
+Game.prototype.attributeRule = function(random){
+	console.log(random)
+switch(random.rule) {
 	case 0:
 		return false;
 	case 1:
-  	return 'rule 1';
+			$("#messages").text('Give away one drink');
   case 2:
-    return 'rule 2';
+  console.log(this)
+  		$("#messages").text('Give away one drink');
+  console.log(this)
   case 3:
-    return 'rule 3';
+  console.log(this)
+			$("#messages").text('Give away one drink');
   case 4:
-    	return 'rule 4';
+			$("#messages").text('Give away one drink');
   case 5:
-    	return 'rule 5';
+			if (this.player.gender === "FEMALE"){
+				this.player.drinks += 1;
+			}
+			$("#messages").text('Female Players drink');
   case 6:
-    	return 'rule 6';
+			if (this.player.gender === "MALE"){
+				this.player.drinks += 1;
+			}
+			$("#messages").text('Male Players drink');
   case 7:
-    	return 'rule 7';
+    	$("#messages").text('Roulette!');
   case 8:
-    	return 'rule 8';
+    	$("#messages").text('Pair-binging (click on your partner)');
+			// $( "#P1, #P2, #P3, #P4, #P5, #P6" ).css( "border", "2px solid white")
+			// $( "#P1, #P2, #P3, #P4, #P5, #P6" ).html();
   case 9:
-    	return 'rule 9';
+    	return 'Never have I ever';
   case 10:
-    	return 'rule 10';
+    	return 'In-My-Suitcase';
   case 11:
-    	return 'rule 11';
+    	return 'Queen of thumbs (3 turns)';
   case 12:
-    	return 'rule 12';
+    	return 'Invent a rule';
   case 13:
-    	return 'rule 13';
+    	return 'Bottom up!';
 	}
 }
 
-compareValue(cardClass);
-
 // assign the rule to a player
-
-
 // get the card used out of the game
-//
 
-function Card (){
-	this.value = value
-	this.class = Math.ceil(this.value )
-}
-
-
-
+var game;
+var player1;
 
 $(document).ready(function(){
-  var game = new Game();
+  game = new Game();
+	player1 = new Player();
   $('.btn').click(function(){
     game.retrieveData();
     game.drawPlayerInfo();
   });
 
-
 });
+
+$('#stack' ).click(function() {
+	var card = drawRandomCard()
+$('#newstack').attr('src', card.img);
+	console.log(card.img);
+	game.attributeRule(card);
+})
