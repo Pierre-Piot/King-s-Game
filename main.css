@@ -1,34 +1,102 @@
 
+/*All pages*/
+
 * {
   font-family: 'Comfortaa', cursive;
 }
 
-.container-main {
-  margin: 20px;
+
+
+/* Page 1 */
+
+.page1 {
+  max-width: 1024px;
+  max-height: 700px;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid red;
+
 }
 
-.container1 {
+.wrapper {
   padding: 0px;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
-  max-width: 1024px;
-  max-height: 640px;
+  width: 1024px;
+  height: 700px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  background-color: #96ceb4;
+}
+
+.container-fixed {
+  padding: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 600px;
+  height: 500px;
   border: 1px solid grey;
   border-radius: 10px;
 }
 
-.container2 {
-  padding: 0;
+.form-group {
+  padding: 10px 0 20px 10px;
+}
+
+.container {
+  padding: 10px 0 20px 10px;
+}
+
+.btn-primary {
+  padding: 10px 0 20px 10px;
+}
+
+.p1SmallContainer {
+  max-width: 500px;
+  max-height: 400px;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+}
+
+
+.p1header {
+  font-family: 'Chewy', cursive;
+  font-size: 40px;
+  text-align: center;
+  padding: 5px;
+  font: white;
+}
+
+.form-control-mg {
+  justify-content: center;
+}
+
+
+/*Page 2*/
+
+.page2 {
+  max-width: 1024px;
+  max-height: 700px;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
-  max-width: 1024px;
-  max-height: 640px;
-  border: 1px solid black;
+
+}
+
+.p2header {
+  font-family: 'Chewy', cursive;
+  font-size: 40px;
+  text-align: center;
+  padding: 5px;
+  font: white;
+}
+
+.container-fluid {
+  padding: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1024px;
+  height: 700px;
+  border: 1px solid grey;
   border-radius: 10px;
 }
 
@@ -40,21 +108,42 @@
   font: white;
 }
 
-.wrapper-left{
+#left{
   border: 1px solid yellow;
-  height: 374px;
+
 }
 
-.wrapper-right{
+#right{
   border: 1px solid violet;
+
 }
 
-.col-md-1 {
-  border: 1px solid;
+.row:after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
-.wrapper-left .row .col-md-4 {
+.col-md-4 {
   border: 1px solid;
-  height: auto;
-  background: grey;
+  height: 150px;
+}
+
+#left img {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+  height: 150px;
+}
+
+.col-md-2 {
+  height: 150px;
+}
+
+.col-md-2 img {
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+
 }
