@@ -51,7 +51,6 @@ Game.prototype.retrieveData = function (){
     var playerCreated = new Player(name, gender, randomAvatar() );
     this.player.push(playerCreated);
 
-
   } console.log(this.player);
 };
 
@@ -65,8 +64,7 @@ Game.prototype.drawPlayerInfo = function() {
   });
 };
 
-
-
+// define randomize function for multi-use
 function randomize(thing){
 	return Math.floor(Math.random() * thing.length);
 }
@@ -77,12 +75,74 @@ for (var i = 0; i < 53; i++){
 	cardStack.push(i);
 }
 
-// get a random card from Stack
+var stack = [
+				{name: "king1", 	img:"images/cards/king_of_spades2.png"},
+				{name: "king2", 	img:"images/cards/king_of_hearts2.png"},
+				{name: "king3", 	img:"images/cards/king_of_diamonds2.png"},
+				{name: "king4", 	img:"images/cards/king_of_clubs2.png"},
+				{name: "queen1", 	img:"images/cards/queen_of_spades2.png"},
+				{name: "queen2", 	img:"images/cards/queen_of_hearts2.png"},
+				{name: "queen3", 	img:"images/cards/queen_of_diamonds2.png"},
+				{name: "queen4", 	img:"images/cards/queen_of_clubs2.png"},
+				{name: "jack1", 	img:"images/cards/jack_of_spades2.png"},
+				{name: "jack2", 	img:"images/cards/jack_of_hearts2.png"},
+				{name: "jack3", 	img:"images/cards/jack_of_diamonds2.png"},
+				{name: "jack4", 	img:"images/cards/jack_of_clubs2.png"},
+				{name: "ten1", 		img:"images/cards/10_of_spades.png"},
+				{name: "ten2", 		img:"images/cards/10_of_hearts.png"},
+				{name: "ten3", 		img:"images/cards/10_of_diamonds.png"},
+				{name: "ten4", 		img:"images/cards/10_of_clubs.png"},
+				{name: "nine1", 	img:"images/cards/9_of_spades.png"},
+				{name: "nine2", 	img:"images/cards/9_of_hearts.png"},
+				{name: "nine3", 	img:"images/cards/9_of_diamonds.png"},
+				{name: "nine4", 	img:"images/cards/9_of_clubs.png"},
+				{name: "eight1", 	img:"images/cards/8_of_spades.png"},
+				{name: "eight2", 	img:"images/cards/8_of_hearts.png"},
+				{name: "eight3", 	img:"images/cards/8_of_diamonds.png"},
+				{name: "eight4", 	img:"images/cards/8_of_clubs.png"},
+				{name: "seven1", 	img:"images/cards/7_of_spades.png"},
+				{name: "seven2", 	img:"images/cards/7_of_hearts.png"},
+				{name: "seven3", 	img:"images/cards/7_of_diamonds.png"},
+				{name: "seven4", 	img:"images/cards/7_of_clubs.png"},
+				{name: "six1", 		img:"images/cards/6_of_spades.png"},
+				{name: "six2", 		img:"images/cards/6_of_hearts.png"},
+				{name: "six3", 		img:"images/cards/6_of_diamonds.png"},
+				{name: "six4", 		img:"images/cards/6_of_clubs.png"},
+				{name: "five1", 	img:"images/cards/5_of_spades.png"},
+				{name: "five2", 	img:"images/cards/5_of_hearts.png"},
+				{name: "five3", 	img:"images/cards/5_of_diamonds.png"},
+				{name: "five4", 	img:"images/cards/5_of_clubs.png"},
+				{name: "four1", 	img:"images/cards/4_of_spades.png"},
+				{name: "four2", 	img:"images/cards/4_of_hearts.png"},
+				{name: "four3", 	img:"images/cards/4_of_diamonds.png"},
+				{name: "four4", 	img:"images/cards/4_of_clubs.png"},
+				{name: "three1", 	img:"images/cards/3_of_spades.png"},
+				{name: "three2", 	img:"images/cards/3_of_hearts.png"},
+				{name: "three3", 	img:"images/cards/3_of_diamonds.png"},
+				{name: "three4", 	img:"images/cards/3_of_clubs.png"},
+				{name: "two1", 		img:"images/cards/2_of_spades.png"},
+				{name: "two2", 		img:"images/cards/2_of_hearts.png"},
+				{name: "two3", 		img:"images/cards/2_of_diamonds.png"},
+				{name: "two4", 		img:"images/cards/2_of_clubs.png.png"},
+];
+
+
+// get a random card from Stack when click the stack
+
 function drawRandomCard () {
-  return randomize(cardStack);
+  return stack[randomize(stack)].name;
 }
 
 var randomCard = drawRandomCard();
+
+function Click(){
+	$('#stack' ).click(function() {
+	  console.log(drawRandomCard());
+}
+
+});
+
+
 
 // attribute randomCard to class
 var cardClass = Math.ceil(randomCard / 4);
@@ -136,9 +196,6 @@ function Card (){
 	this.class = Math.ceil(this.value )
 }
 
-function mousePressed() {
-	cardStack.push(new Card())
-}
 
 
 
