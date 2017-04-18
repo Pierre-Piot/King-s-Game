@@ -76,78 +76,69 @@ for (var i = 0; i < 53; i++){
 }
 
 var stack = [
-				{name: "king1", 	img:"images/cards/king_of_spades2.png"},
-				{name: "king2", 	img:"images/cards/king_of_hearts2.png"},
-				{name: "king3", 	img:"images/cards/king_of_diamonds2.png"},
-				{name: "king4", 	img:"images/cards/king_of_clubs2.png"},
-				{name: "queen1", 	img:"images/cards/queen_of_spades2.png"},
-				{name: "queen2", 	img:"images/cards/queen_of_hearts2.png"},
-				{name: "queen3", 	img:"images/cards/queen_of_diamonds2.png"},
-				{name: "queen4", 	img:"images/cards/queen_of_clubs2.png"},
-				{name: "jack1", 	img:"images/cards/jack_of_spades2.png"},
-				{name: "jack2", 	img:"images/cards/jack_of_hearts2.png"},
-				{name: "jack3", 	img:"images/cards/jack_of_diamonds2.png"},
-				{name: "jack4", 	img:"images/cards/jack_of_clubs2.png"},
-				{name: "ten1", 		img:"images/cards/10_of_spades.png"},
-				{name: "ten2", 		img:"images/cards/10_of_hearts.png"},
-				{name: "ten3", 		img:"images/cards/10_of_diamonds.png"},
-				{name: "ten4", 		img:"images/cards/10_of_clubs.png"},
-				{name: "nine1", 	img:"images/cards/9_of_spades.png"},
-				{name: "nine2", 	img:"images/cards/9_of_hearts.png"},
-				{name: "nine3", 	img:"images/cards/9_of_diamonds.png"},
-				{name: "nine4", 	img:"images/cards/9_of_clubs.png"},
-				{name: "eight1", 	img:"images/cards/8_of_spades.png"},
-				{name: "eight2", 	img:"images/cards/8_of_hearts.png"},
-				{name: "eight3", 	img:"images/cards/8_of_diamonds.png"},
-				{name: "eight4", 	img:"images/cards/8_of_clubs.png"},
-				{name: "seven1", 	img:"images/cards/7_of_spades.png"},
-				{name: "seven2", 	img:"images/cards/7_of_hearts.png"},
-				{name: "seven3", 	img:"images/cards/7_of_diamonds.png"},
-				{name: "seven4", 	img:"images/cards/7_of_clubs.png"},
-				{name: "six1", 		img:"images/cards/6_of_spades.png"},
-				{name: "six2", 		img:"images/cards/6_of_hearts.png"},
-				{name: "six3", 		img:"images/cards/6_of_diamonds.png"},
-				{name: "six4", 		img:"images/cards/6_of_clubs.png"},
-				{name: "five1", 	img:"images/cards/5_of_spades.png"},
-				{name: "five2", 	img:"images/cards/5_of_hearts.png"},
-				{name: "five3", 	img:"images/cards/5_of_diamonds.png"},
-				{name: "five4", 	img:"images/cards/5_of_clubs.png"},
-				{name: "four1", 	img:"images/cards/4_of_spades.png"},
-				{name: "four2", 	img:"images/cards/4_of_hearts.png"},
-				{name: "four3", 	img:"images/cards/4_of_diamonds.png"},
-				{name: "four4", 	img:"images/cards/4_of_clubs.png"},
-				{name: "three1", 	img:"images/cards/3_of_spades.png"},
-				{name: "three2", 	img:"images/cards/3_of_hearts.png"},
-				{name: "three3", 	img:"images/cards/3_of_diamonds.png"},
-				{name: "three4", 	img:"images/cards/3_of_clubs.png"},
-				{name: "two1", 		img:"images/cards/2_of_spades.png"},
-				{name: "two2", 		img:"images/cards/2_of_hearts.png"},
-				{name: "two3", 		img:"images/cards/2_of_diamonds.png"},
-				{name: "two4", 		img:"images/cards/2_of_clubs.png.png"},
+				{name: "king1", 	img:"images/cards/king_of_spades2.png", 	rule:13},
+				{name: "king2", 	img:"images/cards/king_of_hearts2.png", 	rule:13},
+				{name: "king3", 	img:"images/cards/king_of_diamonds2.png" 	rule:13},
+				{name: "king4", 	img:"images/cards/king_of_clubs2.png"			rule:13},
+				{name: "queen1", 	img:"images/cards/queen_of_spades2.png"		rule:12},
+				{name: "queen2", 	img:"images/cards/queen_of_hearts2.png"		rule:12},
+				{name: "queen3", 	img:"images/cards/queen_of_diamonds2.png"	rule:12},
+				{name: "queen4", 	img:"images/cards/queen_of_clubs2.png"		rule:12},
+				{name: "jack1", 	img:"images/cards/jack_of_spades2.png"		rule:11},
+				{name: "jack2", 	img:"images/cards/jack_of_hearts2.png"		rule:11},
+				{name: "jack3", 	img:"images/cards/jack_of_diamonds2.png"	rule:11},
+				{name: "jack4", 	img:"images/cards/jack_of_clubs2.png"			rule:11},
+				{name: "ten1", 		img:"images/cards/10_of_spades.png"				rule:10},
+				{name: "ten2", 		img:"images/cards/10_of_hearts.png"				rule:10},
+				{name: "ten3", 		img:"images/cards/10_of_diamonds.png"			rule:10},
+				{name: "ten4", 		img:"images/cards/10_of_clubs.png"				rule:10},
+				{name: "nine1", 	img:"images/cards/9_of_spades.png"				rule:9},
+				{name: "nine2", 	img:"images/cards/9_of_hearts.png"				rule:9},
+				{name: "nine3", 	img:"images/cards/9_of_diamonds.png"			rule:9},
+				{name: "nine4", 	img:"images/cards/9_of_clubs.png"					rule:9},
+				{name: "eight1", 	img:"images/cards/8_of_spades.png"				rule:8},
+				{name: "eight2", 	img:"images/cards/8_of_hearts.png"				rule:8},
+				{name: "eight3", 	img:"images/cards/8_of_diamonds.png"			rule:8},
+				{name: "eight4", 	img:"images/cards/8_of_clubs.png"					rule:8},
+				{name: "seven1", 	img:"images/cards/7_of_spades.png"				rule:7},
+				{name: "seven2", 	img:"images/cards/7_of_hearts.png"				rule:7},
+				{name: "seven3", 	img:"images/cards/7_of_diamonds.png"			rule:7},
+				{name: "seven4", 	img:"images/cards/7_of_clubs.png"					rule:7},
+				{name: "six1", 		img:"images/cards/6_of_spades.png"				rule:6},
+				{name: "six2", 		img:"images/cards/6_of_hearts.png"				rule:6},
+				{name: "six3", 		img:"images/cards/6_of_diamonds.png"			rule:6},
+				{name: "six4", 		img:"images/cards/6_of_clubs.png"					rule:6},
+				{name: "five1", 	img:"images/cards/5_of_spades.png"				rule:5},
+				{name: "five2", 	img:"images/cards/5_of_hearts.png"				rule:5},
+				{name: "five3", 	img:"images/cards/5_of_diamonds.png"			rule:5},
+				{name: "five4", 	img:"images/cards/5_of_clubs.png"					rule:5},
+				{name: "four1", 	img:"images/cards/4_of_spades.png"				rule:4},
+				{name: "four2", 	img:"images/cards/4_of_hearts.png"				rule:4},
+				{name: "four3", 	img:"images/cards/4_of_diamonds.png"			rule:4},
+				{name: "four4", 	img:"images/cards/4_of_clubs.png"					rule:4},
+				{name: "three1", 	img:"images/cards/3_of_spades.png"				rule:3},
+				{name: "three2", 	img:"images/cards/3_of_hearts.png"				rule:3},
+				{name: "three3", 	img:"images/cards/3_of_diamonds.png"			rule:3},
+				{name: "three4", 	img:"images/cards/3_of_clubs.png"					rule:3},
+				{name: "two1", 		img:"images/cards/2_of_spades.png"				rule:2},
+				{name: "two2", 		img:"images/cards/2_of_hearts.png"				rule:2},
+				{name: "two3", 		img:"images/cards/2_of_diamonds.png"			rule:2},
+				{name: "two4", 		img:"images/cards/2_of_clubs.png.png"			rule:2},
 ];
 
 
 // get a random card from Stack when click the stack
-
 function drawRandomCard () {
-  return stack[randomize(stack)].name;
+  return stack[randomize(stack)];
 }
 
 var randomCard = drawRandomCard();
 
-function Click(){
 	$('#stack' ).click(function() {
-	  console.log(drawRandomCard());
-}
+	$('#newstack').attr('src', drawRandomCard().img);
+	  console.log(drawRandomCard().img);
+})
 
-});
-
-
-
-// attribute randomCard to class
-var cardClass = Math.ceil(randomCard / 4);
-console.log(randomCard);
-console.log(cardClass);
 
 // interpret number of card
 function compareValue (cardClass){
