@@ -2,14 +2,14 @@
 
 // Change background-color with an Interval of X
 
-var backGroundColor = ['#96ceb4', '#ffeead', '#ff6f69', '#ffcc5c'];
-
-function changeBackGroundColor() {
-	return setInterval(function(){ return randomize(backGroundColor); }
-	, 10000);
-}
-changeBackGroundColor();
-
+// var backGroundColor = ['#96ceb4', '#ffeead', '#ff6f69', '#ffcc5c'];
+//
+// function changeBackGroundColor() {
+// 	return setInterval(function(){ return randomize(backGroundColor); }
+// 	, 10000);
+// }
+// changeBackGroundColor();
+// $('.wrapper.background-color')attr(changeBackGroundColor);
 
 // Define the game
 function Game (){
@@ -26,9 +26,7 @@ var avatars = ['avatar1.png','avatar2.png', 'avatar3.png', 'avatar4.png', 'avata
 function randomAvatar () {
   var index = Math.floor(Math.random() * avatars.length)
   var avatarPath = avatars[index];
-  console.log(index);
   avatars.splice(index, 1);
-  console.log(avatars);
   return avatarPath;
 }
 
@@ -37,18 +35,16 @@ function Player(name, gender, avatar){
 	this.gender = gender;
 	this.drinks = 0;
   this.avatar = avatar;
+	this.turn = false;
 }
 
 
 // Get info (N# of players, name, gender) from player
 Game.prototype.retrieveData = function (){
   var numberInput = $('#player-number').find(':selected').text();
-  console.log(numberInput);
   for (var i = 0; i < numberInput; i++){
     var name = $('#name' + (i + 1)).val();
-    console.log(name);
     var gender = $('#player-gender' + (i + 1)).val();
-    console.log(gender);
     var playerCreated = new Player(name, gender, randomAvatar() );
     this.player.push(playerCreated);
 
@@ -133,9 +129,42 @@ function drawRandomCard () {
   return stack[randomize(stack)];
 }
 
-// var randomCard = drawRandomCard();
+function createNextTurn () {
+	var totalCounter = 0;
+	var counter = 0;
+	for (var i = 0; i < game.player.length; i++){
+		if (game.player[i].turn === true){
+			game.player[i].turn = false;
+			counter = i;
+			totalCounter += 1;
+		}
+	}
+		if (counter === game.player.length - 1) {
+			game.player[0].turn = true;
+			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
+			attributeDrinks();
+		} else {
+			game.player[counter + 1].turn = true;
+			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
+			attributeDrinks();
+	}
+}
 
-
+// give a drink
+function attributeDrinks(){
+$('#avatarsa img').click(function(event) {
+		var target = event.target.id[1]
+		event.drinks += 1;
+		game.player[target].drinks += 1;
+		console.log('drinks',game.player[target].drinks)
+		console.log('drinksffhfh',game.player[target])
+		console.log('target',target)
+		console.log('event',event);
+		console.log('event drink',event.target.id[1]);
+		alert(event.target.id);
+});
+}
+// Change turn
 
 // interpret number of card
 Game.prototype.attributeRule = function(random){
@@ -144,59 +173,95 @@ switch(random.rule) {
 	case 0:
 		return false;
 	case 1:
-			$("#messages").text('Give away one drink');
+			createNextTurn();
+			$("#messages").html('Give away one drink');
+			break;
   case 2:
-  console.log(this)
-  		$("#messages").text('Give away one drink');
-  console.log(this)
+			createNextTurn();
+			$("#messages").html('Give away one drink');
+			break;
   case 3:
-  console.log(this)
-			$("#messages").text('Give away one drink');
+  		createNextTurn();
+			$("#messages").html('Give away one drink');
+			break;
   case 4:
-			$("#messages").text('Give away one drink');
+			createNextTurn();
+			$("#messages").html('Give away one drink');
+			break;
   case 5:
+			createNextTurn();
 			if (this.player.gender === "FEMALE"){
 				this.player.drinks += 1;
-			}
-			$("#messages").text('Female Players drink');
+			} console.log(this.player.drinks);
+			$("#messages").html('Female Players drink');
+			break;
   case 6:
+			createNextTurn();
 			if (this.player.gender === "MALE"){
 				this.player.drinks += 1;
+				console.log(this.player.drinks);
 			}
 			$("#messages").text('Male Players drink');
+			break;
   case 7:
+			createNextTurn();
     	$("#messages").text('Roulette!');
+			break;
   case 8:
+			createNextTurn();
     	$("#messages").text('Pair-binging (click on your partner)');
 			// $( "#P1, #P2, #P3, #P4, #P5, #P6" ).css( "border", "2px solid white")
 			// $( "#P1, #P2, #P3, #P4, #P5, #P6" ).html();
+			break;
   case 9:
-    	return 'Never have I ever';
+			createNextTurn();
+    	$("#messages").text('Never have I ever');
+			break;
   case 10:
-    	return 'In-My-Suitcase';
+			createNextTurn();
+			$("#messages").text('In-My-Suitcase');
+			break;
   case 11:
-    	return 'Queen of thumbs (3 turns)';
+			createNextTurn();
+    	$("#messages").text( 'Queen of thumbs (3 turns)');
+			break;
   case 12:
-    	return 'Invent a rule';
+			createNextTurn();
+    	$("#messages").text('Invent a rule');
+			break;
   case 13:
-    	return 'Bottom up!';
+			createNextTurn();
+    	$("#messages").text('Bottom up!');
+			game.player.drinks +=1;
+			break;
 	}
 }
 
-// assign the rule to a player
-// get the card used out of the game
+
 
 var game;
-var player1;
+
+function placePlayersInit (){
+	var firstPlayer = game.player[0].avatar;
+	$('#P1b').attr("src", 'images/' + firstPlayer);
+	for (var i = 0; i < game.player.length; i++){
+		var img = game.player[i].avatar
+		$('#P' + i).attr("src", 'images/' + img);
+		$('#N' + i).html(game.player[i].name);
+	}
+}
 
 $(document).ready(function(){
   game = new Game();
-	player1 = new Player();
   $('.btn').click(function(){
     game.retrieveData();
+		// alert if number of player not specified
+		// alert if number of text entered !== number of players
+		placePlayersInit();
+		game.player[0].turn = true
     game.drawPlayerInfo();
-  });
 
+  });
 });
 
 $('#stack' ).click(function() {
@@ -204,4 +269,6 @@ $('#stack' ).click(function() {
 $('#newstack').attr('src', card.img);
 	console.log(card.img);
 	game.attributeRule(card);
-})
+	// assign the rule to a player
+	// get the card used out of the game
+});

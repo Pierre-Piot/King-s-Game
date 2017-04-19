@@ -5,8 +5,6 @@
   font-family: 'Comfortaa', cursive;
 }
 
-
-
 /* Page 1 */
 
 .page1 {
@@ -108,10 +106,6 @@
   font: white;
 }
 
-#left{
-  border: 1px solid yellow;
-
-}
 
 #right{
   border: 1px solid violet;
@@ -125,7 +119,6 @@
 }
 
 .col-md-4 {
-  border: 1px solid;
   height: 150px;
 }
 
@@ -156,9 +149,7 @@
   color: #ffeead;
   font-size: 20px;
   font-weight: bold;
-  
 }
-
 
 #names {
   margin-left: auto;
@@ -168,5 +159,25 @@
   font-size: 20px;
   font-weight: bold;
   border: 1px solid white;
+}
 
+#avatarsa {
+  position: relative;
+}
+
+#avatarsa > :hover {
+  transform: scale(1.1, 1.1);
+}
+
+
+#stack:hover {
+  transform: scale(1.1, 1.1);
+}
+
+
+#msgdisplay {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 15px;
 }
