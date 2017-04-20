@@ -46,10 +46,17 @@ Game.prototype.retrieveData = function (){
     var name = $('#name' + (i + 1)).val();
     var gender = $('#player-gender' + (i + 1)).val();
     var playerCreated = new Player(name, gender, randomAvatar() );
+    console.log('player created',Player);
     this.player.push(playerCreated);
+    }
 
-  } console.log(this.player);
-};
+    console.log('numberfromlist',numberInput);
+    console.log('length',this.player.length)
+    if (this.player.length != numberInput){
+        alert('You have already started indulging or what? --> Form was not completed correctly :D');
+    }
+  }
+
 
 Game.prototype.drawPlayerInfo = function() {
   this.player.forEach(function(object,index){
@@ -139,11 +146,10 @@ Game.prototype.placePlayersInit = function (){
 function drawRandomCard () {
   var cardDrawnIndex = randomize(stack);
   var cardDrawn = stack[cardDrawnIndex];
-	stack.splice(cardDrawnIndex, 1);
   if (stack.length === 0){
     alert('GAME OVER!' + ' be cool, dont drive...  :D ');
-    // /!\ I need to return the card and then display Game Over (but return ends the function)
   }
+	stack.splice(cardDrawnIndex, 1);
 	return cardDrawn;
 }
 
@@ -161,18 +167,19 @@ Game.prototype.createNextTurn = function () {
 	}
 		if (counter === this.player.length - 1) {
 			this.player[0].turn = true;
+      var currentAvatar = this.player[0].avatar;
+      $('#P1b').attr("src", 'images/' + currentAvatar);
 		} else {
 			this.player[counter + 1].turn = true;
+      var currentAvatar = this.player[counter + 1].avatar;
+  		$('#P1b').attr("src", 'images/' + currentAvatar);
 	}
 }
 
 // give a drink
 
-  var btnClicked;
 // Game.prototype.attributeDrinksOnClick = function(){
-
- btnClicked = false;
- console.log("outsideclick", btnClicked)
+var btnClicked = false;
 	// var that = game
 $('#avatarsa img').click(function(event) {
   console.log("insideclick", btnClicked)
@@ -184,32 +191,47 @@ $('#avatarsa img').click(function(event) {
       $('#N' + target).append('<br>' + game.player[target].drinks);
       console.log('number of times btn is clicked',btnClicked);
       btnClicked = true;
+
+      $('#stack').click(function() {
+         btnClicked = false
+        console.log(  $('#stack'));
+        var card = drawRandomCard();
+      $('#newstack').attr('src', card.img);
+      	game.attributeRule(card);
+      });;
     } else {
       alert('A little thirsty?? The drink has already been given!')
     }
 });
 // }
 
-// Change turn --> faire fonction prototype
-Game.prototype.nextPlayer = function (){
-	if (this.player[counter].turn === true) {
-		console.log('current player turn',this.player[counter]);
-		var currentAvatar = this.player[counter].avatar;
-		console.log('current playey avatar',currentAvatar);
-		$('#P1b').attr("src", 'images/' + currentAvatar);
-	}
-}
+//
+// Game.prototype.nextPlayer = function (){
+// 	if (this.player[counter].turn === true) {
+// 		console.log('current player turn',this.player[counter]);
+// 		var currentAvatar = this.player[counter].avatar;
+// 		console.log('current playey avatar',currentAvatar);
+// 		$('#P1b').attr("src", 'images/' + currentAvatar);
+// 	}
+// }
+
+// var totalDrinks = this.player.forEach(function(){
+//   this.player.map(function(){
+//     return this.player.drinks;
+//   });
+//   console.log('this', this);
+//
+// });
+// console.log('totaldrinks:',totalDrinks);
 
 // interpret number of card
 Game.prototype.attributeRule = function(random){
-	console.log(random)
 var currentIndex;
 this.player.forEach(function(object, index){
 	if (object.turn === true){
 		currentIndex = index;
 	}
-}); console.log('whose turn:',currentIndex);
-
+});
 switch(random.rule) {
 	case 0:
 		return false;
@@ -218,24 +240,29 @@ switch(random.rule) {
 			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
 			$("#messages").html('Give away one drink');
 			// this.attributeDrinksOnClick();
+      $('#stack' ).off();
+
 			break;
   case 2:
 			this.createNextTurn();
 			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
 			$("#messages").html('Give away one drink');
 			// this.attributeDrinksOnClick();
+      $('#stack' ).off();
 			break;
   case 3:
   		this.createNextTurn();
 			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
 			$("#messages").html('Give away one drink');
 			// this.attributeDrinksOnClick();
+      $('#stack' ).off();
 			break;
   case 4:
 			this.createNextTurn();
 			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
 			$("#messages").html('Give away one drink');
 			// this.attributeDrinksOnClick();
+      $('#stack' ).off();
 			break;
   case 5:
 			this.createNextTurn();
@@ -275,20 +302,22 @@ switch(random.rule) {
 			$('#msgdisplay').text('Indicate who will be your partner with a click on his avatar');
     	$("#messages").text('Pair-binging (click on your partner)');
 			// this.attributeDrinksOnClick();
-
       this.player[counter].drinks += 1;
+      $('#stack' ).off();
 			break;
   case 9:
 			this.createNextTurn();
 			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
     	$("#messages").text('Never have I ever');
 			// this.attributeDrinksOnClick();
+      $('#stack' ).off();
 			break;
   case 10:
 			this.createNextTurn();
 			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
 			$("#messages").text('In-My-Suitcase');
 			// this.attributeDrinksOnClick();
+      $('#stack' ).off();
 			break;
   case 11:
 			this.createNextTurn();
@@ -317,8 +346,7 @@ $(document).ready(function(){
   game = new Game();
   $('.btn').click(function(){
     game.retrieveData();
-		// alert if number of player not specified
-		// alert if number of text entered !== number of players
+    $('.page1').toggle('slow');
 		game.placePlayersInit();
 		game.player[0].turn = true;
     game.drawPlayerInfo();
@@ -326,11 +354,11 @@ $(document).ready(function(){
 });
 
 $('#stack' ).click(function() {
-	var card = drawRandomCard()
-  
+  console.log(  $('#stack'));
+  var card = drawRandomCard();
 $('#newstack').attr('src', card.img);
 	game.attributeRule(card);
-	game.nextPlayer();
-	// assign the rule to a player
-	// get the card used out of the game
+  // prevent player from hitting the stack again without having completed an action
+
+
 });

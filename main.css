@@ -95,6 +95,15 @@
   width: 1024px;
   height: 700px;
   border: 1px solid grey;
+}
+
+#subcontainer {
+  padding: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1024px;
+  height: 700px;
+  border: 1px solid grey;
   border-radius: 10px;
 }
 
@@ -106,6 +115,15 @@
   font: white;
 }
 
+/* PAGE2 LEFT*/
+
+/*#emptycol {
+  height : 50px;
+}
+
+.col-md-4 {
+  height: 50px;
+}*/
 
 #right{
   /*border: 1px solid violet;*/
@@ -175,11 +193,15 @@
   transform: scale(1.1, 1.1);
 }
 
+/*#receiveNewCard {
+  height: 300px;
+}*/
+
 #newstack {
+
   margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid red;
 }
 
 #msgdisplay {
