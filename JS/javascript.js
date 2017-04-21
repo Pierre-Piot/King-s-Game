@@ -21,7 +21,7 @@ function Game (){
 }
 
 // Give players an avatar
-var avatars = ['avatar1.png','avatar2.png', 'avatar3.png', 'avatar4.png', 'avatar5.png', 'avatar6.png'];
+var avatars = ['avatar1.png','avatar2.png', 'avatar3.png', 'avatar4.png', 'avatar5.png', 'avatar6.png', 'avatar7.png'];
 
 function randomAvatar () {
   var index = Math.floor(Math.random() * avatars.length)
@@ -36,6 +36,9 @@ function Player(name, gender, avatar){
 	this.drinks = 0;
   this.avatar = avatar;
 	this.turn = false;
+  this.queenOfThumbs = {
+    state: false, counter: 0
+  }
 }
 
 
@@ -46,6 +49,11 @@ Game.prototype.retrieveData = function (){
     var name = $('#name' + (i + 1)).val();
     var gender = $('#player-gender' + (i + 1)).val();
     var playerCreated = new Player(name, gender, randomAvatar() );
+    console.log('namelength',name.length);
+    if (name.length < 1){
+      alert('All players names must be entered');
+      break;
+    }
     console.log('player created',Player);
     this.player.push(playerCreated);
     }
@@ -64,7 +72,8 @@ Game.prototype.drawPlayerInfo = function() {
     var gender = object.gender;
     var drinks = object.drinks;
     var avatar = object.avatar;
-    console.log(name, gender, drinks, avatar);
+    var queenOfThumbs = object.queenOfThumbs;
+    console.log(name, gender, drinks, avatar, queenOfThumbs);
   });
 };
 
@@ -84,10 +93,10 @@ var stack = [
 				{name: "king2", 	img:"images/cards/king_of_hearts2.png", 	rule:12},
 				{name: "king3", 	img:"images/cards/king_of_diamonds2.png", rule:12},
 				{name: "king4", 	img:"images/cards/king_of_clubs2.png",		rule:12},
-				{name: "queen1", 	img:"images/cards/queen_of_spades2.png",	rule:11},
-				{name: "queen2", 	img:"images/cards/queen_of_hearts2.png",	rule:11},
-				{name: "queen3", 	img:"images/cards/queen_of_diamonds2.png",rule:11},
-				{name: "queen4", 	img:"images/cards/queen_of_clubs2.png",		rule:11},
+				// {name: "queen1", 	img:"images/cards/queen_of_spades2.png",	rule:11},
+				// {name: "queen2", 	img:"images/cards/queen_of_hearts2.png",	rule:11},
+				// {name: "queen3", 	img:"images/cards/queen_of_diamonds2.png",rule:11},
+				// {name: "queen4", 	img:"images/cards/queen_of_clubs2.png",		rule:11},
 				{name: "jack1", 	img:"images/cards/jack_of_spades2.png",		rule:10},
 				{name: "jack2", 	img:"images/cards/jack_of_hearts2.png",		rule:10},
 				{name: "jack3", 	img:"images/cards/jack_of_diamonds2.png",	rule:10},
@@ -156,9 +165,11 @@ function drawRandomCard () {
 // indicate current player and activate the next one
 var counter = 0;
 var totalCounter = 0;
-
+var firstTurn = true;
 Game.prototype.createNextTurn = function () {
-	for (var i = 0; i < this.player.length; i++){
+  if (firstTurn === false){
+
+  for (var i = 0; i < this.player.length; i++){
 		if (this.player[i].turn === true){
 			this.player[i].turn = false;
 			counter = i;
@@ -174,27 +185,25 @@ Game.prototype.createNextTurn = function () {
       var currentAvatar = this.player[counter + 1].avatar;
   		$('#P1b').attr("src", 'images/' + currentAvatar);
 	}
+      // this.queenOfThumbIsOn();
+} else {
+  firstTurn = false;
 }
-
+}
 // give a drink
 
 // Game.prototype.attributeDrinksOnClick = function(){
 var btnClicked = false;
-	// var that = game
 $('#avatarsa img').click(function(event) {
-  console.log("insideclick", btnClicked)
     var target = $(this).attr('id')[1];
     if (btnClicked === false) {
-      console.log('target:',target);
       game.player[target].drinks += 1;
       $('#N' + target).html(game.player[target].name);
       $('#N' + target).append('<br>' + game.player[target].drinks);
-      console.log('number of times btn is clicked',btnClicked);
       btnClicked = true;
 
       $('#stack').click(function() {
          btnClicked = false
-        console.log(  $('#stack'));
         var card = drawRandomCard();
       $('#newstack').attr('src', card.img);
       	game.attributeRule(card);
@@ -224,48 +233,76 @@ $('#avatarsa img').click(function(event) {
 // });
 // console.log('totaldrinks:',totalDrinks);
 
+// Indicate that we have a Queen Of thumb in the game and that we can increment drinks
+Game.prototype.queenOfThumbIsOn = function() {
+  var weHaveAQueen = false;
+  this.player.forEach(function(obj, index){
+    if (obj.queenOfThumbs.state === true) {
+      weHaveAQueen = true;
+    }
+    if (weHaveAQueen === true) {
+      $('#avatarsa img').click(function(event) {
+          var target = $(this).attr('id')[1];
+          game.player[target].drinks += 1;
+          $('#N' + target).html(game.player[target].name);
+          $('#N' + target).append('<br>' + game.player[target].drinks);
+
+    });
+  }  else {
+      $('#queenOfThumbs').toggle();
+  }
+});
+}
+
 // interpret number of card
 Game.prototype.attributeRule = function(random){
-var currentIndex;
+ var currentIndex;
+// var queenStillOn = false;
 this.player.forEach(function(object, index){
 	if (object.turn === true){
 		currentIndex = index;
 	}
+  // if (object.queenOfThumbs.state === true){
+  //   queenStillOn = true;
+  // }
 });
+// queen of thumbs
+// if (this.player[currentIndex].queenOfThumbs.state === true) {
+//   this.player[currentIndex].queenOfThumbs.counter --;
+//   if (this.player[currentIndex].queenOfThumbs.counter === 0){
+//     this.player[currentIndex].queenOfThumbs.state = false;
+//   }
+// }
+
 switch(random.rule) {
 	case 0:
 		return false;
 	case 1:
-			this.createNextTurn();
+
 			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
 			$("#messages").html('Give away one drink');
-			// this.attributeDrinksOnClick();
       $('#stack' ).off();
 
 			break;
   case 2:
-			this.createNextTurn();
 			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
 			$("#messages").html('Give away one drink');
-			// this.attributeDrinksOnClick();
       $('#stack' ).off();
+
 			break;
   case 3:
-  		this.createNextTurn();
 			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
 			$("#messages").html('Give away one drink');
-			// this.attributeDrinksOnClick();
       $('#stack' ).off();
+
 			break;
   case 4:
-			this.createNextTurn();
 			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
 			$("#messages").html('Give away one drink');
-			// this.attributeDrinksOnClick();
       $('#stack' ).off();
+
 			break;
   case 5:
-			this.createNextTurn();
 			$('#msgdisplay').text('');
 			$("#messages").html('All Female Players drink');
       this.player.forEach(function(object,index){
@@ -277,9 +314,9 @@ switch(random.rule) {
           console.log('object.name',object.name)
 				}
       });
+
 			break;
   case 6:
-			this.createNextTurn();
 			$('#msgdisplay').text('');
 			$("#messages").html('All Male Players drink');
 			this.player.forEach(function(object,index){
@@ -291,70 +328,95 @@ switch(random.rule) {
           console.log('object.name',object.name)
 				}
       });
+
 			break;
   case 7:
-			this.createNextTurn();
 			$('#msgdisplay').text('');
     	$("#messages").text('Roulette!');
+
 			break;
   case 8:
-			this.createNextTurn();
+
 			$('#msgdisplay').text('Indicate who will be your partner with a click on his avatar');
     	$("#messages").text('Pair-binging (click on your partner)');
-			// this.attributeDrinksOnClick();
-      this.player[counter].drinks += 1;
+      this.player[currentIndex].drinks ++;
+      $('#N' + currentIndex).html(this.player[currentIndex].name);
+      $('#N' + currentIndex).append('<br>' + this.player[currentIndex].drinks);
       $('#stack' ).off();
+
 			break;
   case 9:
-			this.createNextTurn();
 			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
     	$("#messages").text('Never have I ever');
-			// this.attributeDrinksOnClick();
       $('#stack' ).off();
+
 			break;
   case 10:
-			this.createNextTurn();
 			$('#msgdisplay').text('Indicate who received the drink(s) with a click on his avatar');
 			$("#messages").text('In-My-Suitcase');
-			// this.attributeDrinksOnClick();
       $('#stack' ).off();
+
 			break;
-  case 11:
-			this.createNextTurn();
-			$('#msgdisplay').text('');
-    	$("#messages").text( 'Queen of thumbs (3 turns)');
-			break;
+  // case 11:
+	//
+	// 		$('#msgdisplay').text('');
+  //   	$("#messages").text( 'Queen of thumbs (3 turns)');
+  //     this.player[currentIndex].queenOfThumbs.state = true;
+  //     this.player[currentIndex].queenOfThumbs.counter = 3;
+  //     if (queenStillOn === false) {
+  //       $('#queenOfThumbs').toggle();
+  //     }
+  //     console.log('queenstate', queenOfThumbs.state);
+  //     console.log('queenstate', queenOfThumbs.counter);
+	// 		break;
   case 12:
-			this.createNextTurn();
     	$("#messages").text('Invent a rule');
+
 			break;
   case 13:
-			this.createNextTurn();
-			$('#msgdisplay').text('');
+
+      $('#msgdisplay').text('');
     	$("#messages").text('Bottom up!');
       this.player[currentIndex].drinks += 3;
       $('#N' + currentIndex).html(this.player[currentIndex].name);
       $('#N' + currentIndex).append('<br>' + this.player[currentIndex].drinks);
+
+
 			break;
 	}
 }
+
+// Roulette
+// var $r = $('.roulette').fortune(4);
+// var clickHandler = function() {
+//   $('.spinner').off('click');
+//   $('.spinner span').hide();
+//   $r.spin().done(function(price) {
+//     $('.spinner').on('click', clickHandler);
+//     $('.spinner span').show();
+//   });
+// };
+//
+// $('.spinner').on('click', clickHandler);
 
 var game;
 
 $(document).ready(function(){
   game = new Game();
-  $('.btn').click(function(){
+  // $('#queenOfThumbs').toggle();
+  $('.btn-primary').click(function(){
     game.retrieveData();
     $('.page1').toggle('slow');
-		game.placePlayersInit();
-		game.player[0].turn = true;
     game.drawPlayerInfo();
+    game.player[0].turn = true;
+    game.placePlayersInit();
   });
 });
 
 $('#stack' ).click(function() {
-  console.log(  $('#stack'));
   var card = drawRandomCard();
-$('#newstack').attr('src', card.img);
+  $('#newstack').attr('src', card.img);
+  game.createNextTurn();
 	game.attributeRule(card);
+
 });
