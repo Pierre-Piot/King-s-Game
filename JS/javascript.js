@@ -339,7 +339,6 @@ switch(random.rule) {
 	}
 }
 
-
 var game;
 
 $(document).ready(function(){
@@ -358,7 +357,4 @@ $('#stack' ).click(function() {
   var card = drawRandomCard();
 $('#newstack').attr('src', card.img);
 	game.attributeRule(card);
-  // prevent player from hitting the stack again without having completed an action
-
-
 });
