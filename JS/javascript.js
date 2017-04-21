@@ -410,8 +410,13 @@ $(document).ready(function(){
     game.drawPlayerInfo();
     game.player[0].turn = true;
     game.placePlayersInit();
+
+    });
+    //scroll back to Rules
+    // $('clickrules').click(function(){
+    //   $("#rulessss").scrollTo();
+    // });
   });
-});
 
 $('#stack' ).click(function() {
   var card = drawRandomCard();
